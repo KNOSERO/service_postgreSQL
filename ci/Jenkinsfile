@@ -8,19 +8,19 @@ pipeline {
         ansiColor('xterm')
     }
     environment {
-        REPO_URL = 'https://github.com/KNOSERO/template_service_k3s.git'
+        REPO_URL = 'https://github.com/KNOSERO/service_postgreSQL.git'
         DEFAULT_BRANCH = 'master'
         CREDITS_ID = 'github-token'
         SECRET_WEBHOOK = 'github-secret-webhook'
         ACCOUNT = 'KNOSERO'
-        REPO = 'template_service_k3s'
-        PIPELINE_NAME = 'template_service_k3s_validate'
+        REPO = 'service_postgreSQL'
+        PIPELINE_NAME = 'service_postgreSQL_validate'
     }
     stages {
         stage('Configure Triggers') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'template_service_k3s_token', variable: 'TOKEN_WEBHOOK')]) {
+                    withCredentials([string(credentialsId: 'service_postgreSQL_token', variable: 'TOKEN_WEBHOOK')]) {
                         properties([
                             pipelineTriggers([
                                 [
