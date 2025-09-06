@@ -10,6 +10,14 @@ image:
 service:
   type: ClusterIP
 
+env:
+  - name: POSTGRES_USER
+    value: myuser
+  - name: POSTGRES_PASSWORD
+    value: mypassword
+  - name: POSTGRES_DB
+    value: mydb
+
 ports:
   - 5432
 
