@@ -170,7 +170,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        helm install hello-world ./helm \
+                        helm install postgresql ./helm \
                             -f config.yml \
                             --kubeconfig kubeconfig.yaml \
                             --dry-run --debug
