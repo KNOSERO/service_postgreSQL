@@ -1,9 +1,9 @@
-name: hello-world
-namespace: hello-world
+name: postgres
+namespace: postgres
 replicas: 1
 
 image:
-  repository: hello-world
+  repository: postgres
   tag: latest
   pullPolicy: Always
 
@@ -11,8 +11,16 @@ service:
   type: ClusterIP
 
 ports:
+  - 5432
 
 volumes:
+  - name: data
+    mountPath: "/var/lib/postgresql/data"
+    hostPath: "/mnt/media_ruby/k3s/postgresql"
 
 ingress:
   hosts:
+    - domain: postgres.k3s.ravnet
+      port: 5432
+    - domain: postgres.ravcube.com
+      port: 5432
