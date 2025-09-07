@@ -8,7 +8,7 @@ image:
   pullPolicy: Always
 
 service:
-  type: ClusterIP
+  type: NodePort
 
 env:
   - name: POSTGRES_USER
@@ -18,6 +18,8 @@ env:
   - name: POSTGRES_DB
     value: mydb
 
+runAsUser: 0
+
 ports:
   - 5432
 
@@ -25,6 +27,17 @@ volumes:
   - name: data
     mountPath: "/var/lib/postgresql/data"
     hostPath: "/mnt/media_ruby/k3s/postgresql"
+
+configMounts:
+  - name: postgresql-config
+    configMap: postgresql-config
+    mountPath: /var/lib/postgresql/data/postgresql.conf
+    subPath: postgresql.conf
+    readOnly: true
+
+configMaps:
+  - name: postgresql
+    path: postgresql.conf
 
 ingress:
   hosts:

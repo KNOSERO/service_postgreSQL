@@ -156,6 +156,18 @@ pipeline {
             }
         }
 
+        stage('Copy Config') {
+            steps {
+                script {
+                    if (fileExists('config')) {
+                        sh '''
+                            mkdir -p ./helm/config && cp -r config/* ./helm/config/
+                        '''
+                    }
+                }
+            }
+        }
+
         stage('Test Lint') {
             steps {
                 script {
@@ -170,7 +182,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        helm install postgresql ./helm \
+                        helm upgrade --install postgresql ./helm \
                             -f config.yml \
                             --kubeconfig kubeconfig.yaml \
                             --dry-run --debug
