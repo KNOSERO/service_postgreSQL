@@ -40,7 +40,7 @@ configMounts:
 
 configMaps:
   - name: postgresql
-    path: postgresql.conf
+    path: config/postgresql.conf
 
 ingress:
   hosts:
