@@ -6,7 +6,9 @@ image:
   repository: postgres
   tag: latest
   pullPolicy: Always
-  args: ["-c", "config_file=/etc/postgresql/postgresql.conf"]
+  args:
+    - "-c",
+    - "config_file=/etc/postgresql/postgresql.conf"
 
 service:
   type: NodePort
