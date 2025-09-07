@@ -6,6 +6,7 @@ image:
   repository: postgres
   tag: latest
   pullPolicy: Always
+  args: ["-c", "config_file=/etc/postgresql/postgresql.conf"]
 
 service:
   type: NodePort
@@ -31,7 +32,7 @@ volumes:
 configMounts:
   - name: postgresql-config
     configMap: postgresql-config
-    mountPath: /var/lib/postgresql/data/postgresql.conf
+    mountPath: /etc/postgresql/postgresql.conf
     subPath: postgresql.conf
     readOnly: true
 
