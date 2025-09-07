@@ -10,7 +10,7 @@ image:
     - "-c,config_file=/etc/postgresql/postgresql.conf"
 
 service:
-  type: NodePort
+  type: LoadBalancer
 
 env:
   - name: POSTGRES_USER
@@ -43,7 +43,3 @@ configMaps:
 
 ingress:
   hosts:
-    - domain: postgres.k3s.ravnet
-      port: 5432
-    - domain: postgres.ravcube.com
-      port: 5432
