@@ -58,7 +58,7 @@ pipeline {
                                 ]],
                                 branches: [[ name: "origin/pr/${env.PR_NUMBER}/merge" ]],
                                 extensions: [
-                                    [$class: 'CloneOption', shallow: true, depth: 25, noTags: true, timeout: 240],
+                                    [$class: 'CloneOption', shallow: false, noTags: false, timeout: 240],
                                     [$class: 'PruneStaleBranch'],
                                     [$class: 'CleanBeforeCheckout']
                                 ]
@@ -79,7 +79,6 @@ pipeline {
                             ]],
                             branches: [[ name: "*/${env.DEFAULT_BRANCH}" ]],
                             extensions: [
-                                [$class: 'CloneOption', shallow: true, depth: 25, noTags: true, timeout: 240],
                                 [$class: 'PruneStaleBranch'],
                                 [$class: 'CleanBeforeCheckout']
                             ]
