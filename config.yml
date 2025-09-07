@@ -7,7 +7,6 @@ image:
   tag: latest
   pullPolicy: Always
   args:
-    - -c
     - config_file=/etc/postgresql/postgresql.conf
 
 service:
