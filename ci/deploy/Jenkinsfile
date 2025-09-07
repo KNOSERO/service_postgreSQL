@@ -19,11 +19,13 @@ pipeline {
                     userRemoteConfigs: [[
                         url: env.REPO_URL,
                         credentialsId: env.CREDITS_ID
+                        refspec: '+refs/heads/*:refs/remotes/origin/*'
                     ]],
                     branches: [[ name: "${env.BRANCH}" ]],
-                    extensions: [
-                        [$class: 'PruneStaleBranch']
-                    ]
+                     extensions: [
+                        [$class: 'PruneStaleBranch'],
+                        [$class: 'CleanBeforeCheckout']
+                     ]
                 ])
             }
         }
